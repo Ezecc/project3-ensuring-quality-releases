@@ -8,7 +8,8 @@ stages:
     jobs:
       - job: TerrafromTasks
         displayName: Terraform Tasks
-        pool: myAgentPool
+        pool:
+          vmImage: "ubuntu-latest"
         steps:
           - task: DownloadSecureFile@1
             displayName: Download azsecret.conf file
@@ -83,7 +84,8 @@ stages:
     jobs:
       - job: Build_Artifacts
         displayName: Build Artifacts
-        pool: myAgentPool
+        pool:
+          vmImage: "ubuntu-latest"
         steps:
           - task: ArchiveFiles@2
             displayName: Archive Fakerestapi
@@ -129,7 +131,8 @@ stages:
     jobs:
       - deployment: deploy_fakerestapi
         displayName: Deploy FakeRestAPI
-        pool: myAgentPool
+        pool:
+          vmImage: "ubuntu-latest"
         environment: "TEST"
         strategy:
           runOnce:
@@ -172,7 +175,8 @@ stages:
     jobs:
       - job: IntegrationTests
         displayName: Integration Tests For UI and Selenium
-        pool: myAgentPool
+        pool:
+          vmImage: "ubuntu-latest"
         steps:
           - task: CmdLine@2
             displayName: Install Newman
@@ -200,7 +204,8 @@ stages:
 
       - job: UITests
         displayName: Selenuim UI Tests
-        pool: myAgentPool
+        pool:
+          vmImage: "ubuntu-latest"
         steps:
           - task: Bash@3
             displayName: "Setup VM environment"
@@ -249,7 +254,8 @@ stages:
 
       - job: PerformanceTest
         displayName: Test JMeter
-        pool: myAgentPool
+        pool:
+          vmImage: "ubuntu-latest"
         steps:
           - bash: |
               echo  '$(System.DefaultWorkingDirectory)'
